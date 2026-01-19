@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
-from components.navigation.views.empty_view_component import EmptyViewComponent
+from components.views.empty_view_component import EmptyViewComponent
 from pages.base_page import BasePage
 
 
