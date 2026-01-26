@@ -16,4 +16,4 @@ class TestRegistration:
         )
         registration_page.click_registration_button()
 
-        dashboard_page.dashboard_toolbar.check_visible()
+        dashboard_page.dashboard_toolbar_view.check_visible()
