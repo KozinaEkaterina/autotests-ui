@@ -1,5 +1,6 @@
 import pytest
 import allure
+from allure_commons.types import Severity
 
 from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.epics import AllureEpic
@@ -17,6 +18,7 @@ from tools.allure.tags import AllureTag
 class TestDashboard:
 
     @allure.title("Check displaying of dashboard page")
+    @allure.severity(Severity.NORMAL)
     def test_dashboard_displaying(self, dashboard_page_with_state: DashboardPage):
         dashboard_page_with_state.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard")
         dashboard_page_with_state.navbar.check_visible("username")
