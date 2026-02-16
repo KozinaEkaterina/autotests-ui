@@ -56,4 +56,4 @@ class Settings(BaseSettings):
         )
 
 
-print(Settings.initialize())
+settings = Settings.initialize()
