@@ -1,8 +1,8 @@
 # config.py
 from enum import Enum
 
-from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel
-from pydantic_settings import BaseSettings
+from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, Field, BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Browser(str, Enum):
@@ -22,6 +22,12 @@ class TestData(BaseModel):
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_nested_delimiter=".",
+    )
+
     app_url: HttpUrl
     headless: bool
     browsers: list[Browser]
@@ -30,3 +36,6 @@ class Settings(BaseSettings):
     videos_dir: DirectoryPath
     tracing_dir: DirectoryPath
     browser_state_file: FilePath
+
+
+print(Settings())
