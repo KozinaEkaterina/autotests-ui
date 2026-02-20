@@ -12,13 +12,13 @@ class Browser(str, Enum):
     CHROMIUM = "chromium"
 
 
-class TestUser(BaseModel):
+class TestUser(BaseSettings):
     email: EmailStr
     username: str
     password: str
 
 
-class TestData(BaseModel):
+class TestData(BaseSettings):
     image_png_file: FilePath
 
 
@@ -36,6 +36,7 @@ class Settings(BaseSettings):
     test_data: TestData
     videos_dir: DirectoryPath
     tracing_dir: DirectoryPath
+    allure_results_dir: DirectoryPath
     browser_state_file: FilePath
 
 
@@ -44,15 +45,18 @@ class Settings(BaseSettings):
         videos_dir = DirectoryPath("./videos")
         tracing_dir = DirectoryPath("./tracing")
         browser_state_file = FilePath("browser-state.json")
+        allure_results_dir = DirectoryPath("./allure-results")
 
         videos_dir.mkdir(exist_ok=True)
         tracing_dir.mkdir(exist_ok=True)
         browser_state_file.touch(exist_ok=True)
+        allure_results_dir.mkdir(exist_ok=True)
 
         return Settings(
             videos_dir=videos_dir,
             tracing_dir=tracing_dir,
-            browser_state_file=browser_state_file
+            browser_state_file=browser_state_file,
+            allure_results_dir=allure_results_dir,
         )
 
     def get_base_url(self) -> str:
